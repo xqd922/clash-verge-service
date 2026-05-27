@@ -21,7 +21,7 @@ use windows_service::{
 
 #[cfg(windows)]
 const SERVICE_TYPE: ServiceType = ServiceType::OWN_PROCESS;
-const SERVICE_NAME: &str = "clash_verge_service";
+const SERVICE_NAME: &str = "clash_verge_legacy_service";
 const LISTEN_PORT: u16 = 33211;
 
 macro_rules! wrap_response {
@@ -130,7 +130,7 @@ fn stop_service() -> Result<()> {
 }
 #[cfg(not(windows))]
 fn stop_service() -> anyhow::Result<()> {
-    // systemctl stop clash_verge_service
+    // systemctl stop clash_verge_legacy_service
     std::process::Command::new("systemctl")
         .arg("stop")
         .arg(SERVICE_NAME)

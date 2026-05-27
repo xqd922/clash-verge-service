@@ -165,7 +165,7 @@ fn main() -> windows_service::Result<()> {
     let service_manager = ServiceManager::local_computer(None::<&str>, manager_access)?;
 
     let service_access = ServiceAccess::QUERY_STATUS | ServiceAccess::START;
-    if let Ok(service) = service_manager.open_service("clash_verge_service", service_access) {
+    if let Ok(service) = service_manager.open_service("clash_verge_legacy_service", service_access) {
         if let Ok(status) = service.query_status() {
             match status.current_state {
                 ServiceState::StopPending
@@ -191,8 +191,8 @@ fn main() -> windows_service::Result<()> {
     }
 
     let service_info = ServiceInfo {
-        name: OsString::from("clash_verge_service"),
-        display_name: OsString::from("Clash Verge Service"),
+        name: OsString::from("clash_verge_legacy_service"),
+        display_name: OsString::from("Clash Verge Legacy Service"),
         service_type: ServiceType::OWN_PROCESS,
         start_type: ServiceStartType::AutoStart,
         error_control: ServiceErrorControl::Normal,
@@ -206,7 +206,7 @@ fn main() -> windows_service::Result<()> {
     let start_access = ServiceAccess::CHANGE_CONFIG | ServiceAccess::START;
     let service = service_manager.create_service(&service_info, start_access)?;
 
-    service.set_description("Clash Verge Service helps to launch clash core")?;
+    service.set_description("Clash Verge Legacy Service helps to launch clash core")?;
     service.start(&Vec::<&OsStr>::new())?;
 
     Ok(())
