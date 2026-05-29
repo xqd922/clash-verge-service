@@ -22,7 +22,7 @@ use windows_service::{
 #[cfg(windows)]
 const SERVICE_TYPE: ServiceType = ServiceType::OWN_PROCESS;
 const SERVICE_NAME: &str = "clash_verge_legacy_service";
-const LISTEN_PORT: u16 = 33211;
+const LISTEN_PORT: u16 = 33212;
 
 macro_rules! wrap_response {
     ($expr: expr) => {
